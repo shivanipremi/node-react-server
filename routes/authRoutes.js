@@ -8,7 +8,8 @@ app.get("/auth/google/callback", passport.authenticate('google'), (req, res)=> {
 });
 
 app.get("/api/current_user", (req, res)=> {
-    if(req.user) {
+    console.log('inside the api=====, req', req.user)
+    if(req && req.user) {
         res.send(req.user)
     } else {
         res.send('no user info here')
