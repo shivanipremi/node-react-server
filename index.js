@@ -1,8 +1,11 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const passport = require("passport");
+const bodyPaser = require("body-parser")
 const cookieSession = require("cookie-session")
 require('./models/users')
+require('./models/surveys')
+
 
 mongoose.connect("mongodb://localhost:27017/myconnection")
 var db = mongoose.connection;
@@ -19,11 +22,17 @@ app.use(
   })
 )
 
+app.use(bodyPaser.json())
+
 
 app.use(passport.initialize());
 app.use(passport.session());  
 
 require('./routes/authRoutes');
+require('./routes/billingRoutes');
+require('./routes/surveyRoutes');
+
+
 require('./services/passport');
 
 var cors = require('cors')

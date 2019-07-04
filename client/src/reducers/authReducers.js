@@ -1,13 +1,11 @@
 
-let defaultState = {
-    name:'prince'
-}
-export default function(state=defaultState, action) {
+import {FETCH_USER} from '../actions/types';
+
+export default function(state=null, action) {
     console.log("Action::::", action)
     switch(action.type) {
-        case 'fetch_user': return state
+        case FETCH_USER: return action.payload || '';
         default :
-            return action;
+            return state;
     }
-    return state
 }
